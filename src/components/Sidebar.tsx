@@ -3,6 +3,7 @@ import {
   LayoutDashboard, GitCompare, FileText, Database,
   Clock, Settings, ChevronRight
 } from 'lucide-react';
+import { LogoMark } from './LogoMark';
 
 type NavSection = 'overview' | 'live-reviews' | 'contracts' | 'sources' | 'audit' | 'settings';
 
@@ -26,9 +27,7 @@ export function Sidebar({ activeSection, onNavigate }: SidebarProps) {
       {/* Logo */}
       <div className="px-5 py-5 border-b border-gray-100">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#3157F6] to-[#6654F1] flex items-center justify-center shadow-sm">
-            <span className="text-white font-bold text-xs">CC</span>
-          </div>
+          <LogoMark className="h-7 w-7" />
           <div>
             <div className="font-bold text-sm text-gray-900 leading-none">CodeCounsel</div>
             <div className="text-[10px] text-gray-400 mt-0.5 font-medium">Live System Contracts</div>

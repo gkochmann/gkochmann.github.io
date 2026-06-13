@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { LogoMark } from './LogoMark';
 
 const steps = [
   'Connecting to Friendli workspace...',
@@ -59,9 +60,7 @@ export function LoadingScreen({ onDone }: LoadingScreenProps) {
         className="flex flex-col items-center max-w-sm w-full px-8"
       >
         {/* Logo */}
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3157F6] to-[#6654F1] flex items-center justify-center shadow-lg mb-5">
-          <span className="text-white font-extrabold text-2xl">CC</span>
-        </div>
+        <LogoMark className="mb-5 h-16 w-16" />
 
         <h1 className="text-xl font-bold text-gray-900 mb-1">CodeCounsel</h1>
         <p className="text-sm text-gray-500 mb-8">Friendli Production Workspace</p>
