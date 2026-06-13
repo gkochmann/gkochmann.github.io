@@ -19,7 +19,7 @@
 
 .cc-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.88fr) minmax(420px, 1.12fr);
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr);
   gap: 36px;
   align-items: center;
 }
@@ -27,11 +27,12 @@
 .cc-hero-copy h1,
 .cc-partner-hero h1 {
   max-width: 760px;
-  font-size: clamp(2.3rem, 5vw, 4.9rem);
-  line-height: 0.98;
+  font-size: clamp(2.25rem, 4vw, 3.8rem);
+  line-height: 1.04;
   font-weight: 800;
   letter-spacing: 0;
   color: #111827;
+  text-wrap: balance;
 }
 
 .cc-hero-copy p,
