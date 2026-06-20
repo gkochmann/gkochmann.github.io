@@ -20,12 +20,13 @@ export function DemoIntroModal({ onClose }: DemoIntroModalProps) {
         </div>
 
         <h2 className="text-xl font-bold leading-tight text-gray-950">
-          Friendli is evolving a matching feature.
+          Friendli is developing a new matching feature called Smart Profiles.
         </h2>
 
         <p className="mt-3 text-sm leading-6 text-gray-600">
-          Friendli helps people find new friends based on shared routines, nearby places, and
-          interests. Their new Smart Profiles feature uses profile details, location signals,
+          Friendli is a new social media app that helps people find new friends based on shared routines, nearby places, and
+          interests. 
+          Their new Smart Profiles feature uses profile details, location signals,
           schedule patterns, and other sensitive data to improve matching.
         </p>
 

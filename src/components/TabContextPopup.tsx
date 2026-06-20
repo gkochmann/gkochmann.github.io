@@ -30,7 +30,7 @@ const tabContext: Record<NavSection, {
   },
   'live-reviews': {
     title: 'Reviews',
-    body: 'Looks like Smart Profiles is collecting new data compared with what was originally approved. This view shows what was approved, what is live now, and which changes need review.',
+    body: 'Friendli\'s new Smart Profiles feature is collecting new data compared with what was originally approved. This view shows what was approved, what is being deployed now, and what needs review.',
     icon: GitCompare,
   },
   audit: {
