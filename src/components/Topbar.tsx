@@ -9,7 +9,7 @@ export function Topbar() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" />
           <input
             type="text"
-            placeholder="Search contracts, features, sources..."
+            placeholder="Search sources, contracts, reviews..."
             className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-100 rounded-xl text-sm text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3157F6]/20 focus:border-[#3157F6]/40"
           />
         </div>
@@ -21,11 +21,6 @@ export function Topbar() {
         <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-100 rounded-xl">
           <RefreshCw className="h-3 w-3 text-green-600" />
           <span className="text-xs font-medium text-green-700">Last scan: 12 min ago</span>
-        </div>
-
-        {/* Release info */}
-        <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 bg-[#F4F6FF] border border-[#3157F6]/10 rounded-xl">
-          <span className="text-xs font-medium text-[#3157F6]">iOS 8.14.0 / Android 8.14.2</span>
         </div>
 
         {/* Notifications */}

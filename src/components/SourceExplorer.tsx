@@ -54,18 +54,14 @@ function SourceCard({ source, onClick }: { source: ConnectedSource; onClick: () 
         </div>
       </div>
 
-      <div className="mt-3 grid grid-cols-3 gap-2">
-        <div className="text-center">
-          <div className="text-base font-bold text-gray-900">{source.coverage}%</div>
-          <div className="text-[10px] text-gray-400">Coverage</div>
+      <div className="mt-3 space-y-1.5">
+        <div className="flex items-center justify-between text-[11px]">
+          <span className="text-gray-500">Used to understand approvals and live behavior</span>
+          <span className="font-semibold text-gray-800">{source.coverage}% ready</span>
         </div>
-        <div className="text-center">
-          <div className="text-base font-bold text-gray-900">{source.linkedRequirements}</div>
-          <div className="text-[10px] text-gray-400">Linked reqs</div>
-        </div>
-        <div className="text-center">
-          <div className="text-base font-bold text-gray-900">{source.artifacts.length}</div>
-          <div className="text-[10px] text-gray-400">Artifacts</div>
+        <div className="flex items-center justify-between text-[11px]">
+          <span className="text-gray-500">Linked items</span>
+          <span className="font-semibold text-gray-800">{source.linkedRequirements} requirements · {source.artifacts.length} files</span>
         </div>
       </div>
 
@@ -131,9 +127,9 @@ function SourceDetailPanel({ source, onClose }: { source: ConnectedSource; onClo
         {/* Stats */}
         <div className="px-5 py-4 grid grid-cols-3 gap-3 border-b border-gray-100">
           {[
-            { label: 'Coverage', value: `${source.coverage}%` },
-            { label: 'Linked requirements', value: source.linkedRequirements },
-            { label: 'Artifacts', value: source.artifacts.length },
+            { label: 'Ready', value: `${source.coverage}%` },
+            { label: 'Requirements', value: source.linkedRequirements },
+            { label: 'Files', value: source.artifacts.length },
           ].map(stat => (
             <div key={stat.label} className="bg-gray-50 rounded-xl p-3 text-center">
               <div className="text-lg font-bold text-gray-900">{stat.value}</div>
@@ -145,7 +141,7 @@ function SourceDetailPanel({ source, onClose }: { source: ConnectedSource; onClo
         {/* Artifacts */}
         <div className="flex-1 overflow-y-auto p-5">
           <div className="flex items-center justify-between mb-3">
-            <h4 className="text-sm font-semibold text-gray-800">Linked Artifacts</h4>
+            <h4 className="text-sm font-semibold text-gray-800">Linked Evidence</h4>
             <button className="flex items-center gap-1 text-xs text-[#3157F6] font-medium hover:text-[#2347e0]">
               <RefreshCw className="h-3 w-3" /> Sync now
             </button>
@@ -169,7 +165,7 @@ function SourceDetailPanel({ source, onClose }: { source: ConnectedSource; onClo
 
           {/* Fake linked contracts */}
           <div className="mt-4">
-            <h4 className="text-sm font-semibold text-gray-800 mb-3">Connected Contracts</h4>
+            <h4 className="text-sm font-semibold text-gray-800 mb-3">Contracts Using This Source</h4>
             <div className="space-y-1.5">
               {['Smart Profiles', 'Nearby Ranking Model', 'Plan Assistant', 'Home Feed Redesign'].slice(0, 3).map(name => (
                 <div key={name} className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg">
@@ -191,9 +187,9 @@ export function SourceExplorer() {
   return (
     <div className="flex-1 overflow-y-auto p-6">
       <div className="mb-5">
-        <h1 className="text-xl font-bold text-gray-900">Source Explorer</h1>
+        <h1 className="text-xl font-bold text-gray-900">Sources</h1>
         <p className="text-sm text-gray-500 mt-0.5">
-          {connectedSources.length} connected sources · 96% average coverage
+          These are the places CodeCounsel reads from to understand what was approved and what is live.
         </p>
       </div>
 

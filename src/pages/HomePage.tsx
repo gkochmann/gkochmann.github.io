@@ -10,12 +10,12 @@ export function HomePage() {
             <div className="cc-hero-copy">
               <div className="cc-kicker">
                 <Sparkles className="h-3.5 w-3.5" />
-                Live system contracts for product teams
+                Product governance for fast-moving teams
               </div>
-              <h1>Turn static legal and engineering documentation into live system contracts.</h1>
+              <h1>Your product changes constantly. Do you know what is live?</h1>
               <p>
-                CodeCounsel keeps product, legal, privacy, and engineering aligned as features evolve,
-                before material risk slips into production.
+                CodeCounsel helps legal, compliance, product, and engineering teams track whether
+                shipped features still match approved uses, controls, disclosures, and requirements.
               </p>
               <div className="cc-hero-actions">
                 <a href="/demo" className="cc-btn cc-btn-primary">
@@ -40,10 +40,10 @@ export function HomePage() {
               </div>
 
               <div className="cc-dashboard-title">
-                <h2>Live Review Dashboard</h2>
+                <h2>Product Change Review</h2>
                 <div className="cc-pill-row">
                   <span>Service: User Profile</span>
-                  <span>PRD v3.2</span>
+                  <span>Privacy review v3.2</span>
                   <span>Scan: 12 min ago</span>
                 </div>
               </div>
@@ -51,7 +51,7 @@ export function HomePage() {
               <div className="cc-review-cols">
                 <div className="cc-review-col">
                   <div className="cc-col-heading cc-green">1</div>
-                  <h3>Approved Intent</h3>
+                  <h3>What Was Approved</h3>
                   <p>Email and name only</p>
                   <p>Personalization only</p>
                   <p>90 day retention</p>
@@ -59,7 +59,7 @@ export function HomePage() {
                 </div>
                 <div className="cc-review-col">
                   <div className="cc-col-heading cc-blue">2</div>
-                  <h3>Current Implementation</h3>
+                  <h3>What Changed</h3>
                   <p>Email, name, <strong>device ID</strong></p>
                   <p>Personalization and <strong>analytics</strong></p>
                   <p><strong>120 day retention</strong></p>
@@ -67,20 +67,20 @@ export function HomePage() {
                 </div>
                 <div className="cc-review-col">
                   <div className="cc-col-heading cc-orange">3</div>
-                  <h3>Diff / Review</h3>
+                  <h3>Needs Review</h3>
                   <span className="cc-diff-tag">NEW FIELD</span>
                   <span className="cc-diff-tag">EXPANDED USE</span>
                   <div className="cc-alert-box">
-                    <strong>Material change detected</strong>
+                    <strong>Important change detected</strong>
                     <a href="/demo">Start review task</a>
                   </div>
                 </div>
               </div>
 
               <div className="cc-audit-strip">
-                <span>Drift detected</span>
+                <span>Change detected</span>
                 <span>Review task created</span>
-                <span>Decision captured</span>
+                <span>Decision recorded</span>
               </div>
             </div>
           </div>
@@ -91,23 +91,23 @@ export function HomePage() {
         <div className="cc-page">
           <div className="cc-section-heading">
             <span>How it works</span>
-            <h2>Connect the sources of intent to the systems that ship.</h2>
+            <h2>Connect approvals to the product that actually ships.</h2>
           </div>
           <div className="cc-card-grid three">
             <article className="cc-info-card">
               <GitBranch className="cc-card-icon" />
-              <h3>Configure sources</h3>
-              <p>Connect requirements, legal approvals, specs, code, design files, model cards, prompts, and disclosures.</p>
+              <h3>Connect your review sources</h3>
+              <p>Link PRDs, legal approvals, privacy reviews, model cards, prompts, policies, and disclosures.</p>
             </article>
             <article className="cc-info-card">
               <Layers className="cc-card-icon" />
-              <h3>Continuously monitor changes</h3>
-              <p>Approved obligations become live contracts that are compared against the current product implementation.</p>
+              <h3>Track product changes</h3>
+              <p>Watch code, models, prompts, data use, vendors, and feature flags for changes that matter.</p>
             </article>
             <article className="cc-info-card">
               <Shield className="cc-card-icon" />
-              <h3>Escalate material drift</h3>
-              <p>Only meaningful differences trigger review, with evidence, ownership, and an auditable decision trail.</p>
+              <h3>Send the right changes for review</h3>
+              <p>Route important changes with evidence, owners, context, and a clear record of each decision.</p>
             </article>
           </div>
         </div>
@@ -117,28 +117,28 @@ export function HomePage() {
         <div className="cc-page">
           <div className="cc-section-heading">
             <span>Outcomes that matter</span>
-            <h2>Reduce review drag without losing control.</h2>
+            <h2>Move faster without losing track of product risk.</h2>
           </div>
           <div className="cc-card-grid four">
             <article className="cc-info-card compact">
               <Shield className="cc-card-icon" />
-              <h3>Reduce legal risk</h3>
-              <p>Keep disclosures and obligations matched to actual product behavior.</p>
+              <h3>Catch risk before launch</h3>
+              <p>Spot legal, privacy, and compliance issues before they reach customers.</p>
             </article>
             <article className="cc-info-card compact">
               <Sparkles className="cc-card-icon" />
-              <h3>Catch drift early</h3>
-              <p>Detect material changes before launch, incidents, or audit pressure.</p>
+              <h3>Keep product documentation current</h3>
+              <p>See when approved use cases, controls, or disclosures need to be updated.</p>
             </article>
             <article className="cc-info-card compact">
               <Users className="cc-card-icon" />
-              <h3>Reduce back-and-forth</h3>
-              <p>Give reviewers clear diffs, context, source evidence, and owners.</p>
+              <h3>Give teams the same facts</h3>
+              <p>Show legal, product, privacy, and engineering what changed and why it matters.</p>
             </article>
             <article className="cc-info-card compact">
               <FileText className="cc-card-icon" />
-              <h3>Create audit trails</h3>
-              <p>Capture every approval, drift, review task, comment, and risk decision.</p>
+              <h3>Answer audits faster</h3>
+              <p>Keep a clear history of approvals, product changes, reviews, comments, and decisions.</p>
             </article>
           </div>
         </div>
@@ -150,7 +150,7 @@ export function HomePage() {
             <LogoMark className="cc-logo-mark-sm" />
             <span>CodeCounsel</span>
           </div>
-          <p>Keep intent and implementation in sync. Build trustworthy products at scale.</p>
+          <p>Keep approved use cases, controls, and product behavior in sync.</p>
         </div>
       </footer>
     </main>

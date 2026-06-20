@@ -18,9 +18,9 @@ export function AuditScreen() {
   return (
     <div className="flex-1 overflow-y-auto p-6">
       <div className="mb-5">
-        <h1 className="text-xl font-bold text-gray-900">Global Audit Trail</h1>
+        <h1 className="text-xl font-bold text-gray-900">History</h1>
         <p className="text-sm text-gray-500 mt-0.5">
-          All events across the Friendli workspace — {allEvents.length} total events
+          Every approval, detected change, review, and decision across the Friendli workspace.
         </p>
       </div>
 

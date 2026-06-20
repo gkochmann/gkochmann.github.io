@@ -1,15 +1,15 @@
 import { ArrowRight, CheckCircle, ClipboardList, FileSearch, Lock, MessageSquare, Rocket, ShieldCheck, Users } from 'lucide-react';
 
 const receiveItems = [
-  { icon: FileSearch, text: 'A documentation and development alignment assessment delivered by CodeCounsel' },
+  { icon: FileSearch, text: 'A clear assessment of where your approvals, docs, and product behavior may be out of sync' },
   { icon: Rocket, text: 'Early access to new features before general availability' },
-  { icon: Users, text: 'Direct access to the founding team, not a sales process' },
+  { icon: Users, text: 'Direct access to the founding team, not a sales handoff' },
 ];
 
 const contributeItems = [
-  { icon: ClipboardList, text: 'Access to real protected requirements docs, specs, and code workflows' },
-  { icon: MessageSquare, text: 'Structured feedback sessions with the CodeCounsel team' },
-  { icon: CheckCircle, text: 'Use case input that directly shapes product priorities and roadmap design' },
+  { icon: ClipboardList, text: 'Access to real approval, documentation, and product-change workflows' },
+  { icon: MessageSquare, text: 'Practical feedback on what is useful, confusing, or missing' },
+  { icon: CheckCircle, text: 'Input that directly shapes the product roadmap' },
 ];
 
 export function PartnershipsPage() {
@@ -18,7 +18,7 @@ export function PartnershipsPage() {
       <section className="cc-partner-hero">
         <div className="cc-page">
           <div className="cc-program-badge">Discovery Partner Program</div>
-          <h1>Shape how legal and engineering stay in sync.</h1>
+          <h1>Help build the product that keeps approvals and shipped features in sync.</h1>
           <div className="cc-partner-intro">
             <div className="cc-spots">
               <strong>10</strong>
@@ -26,8 +26,9 @@ export function PartnershipsPage() {
             </div>
             <p>
               We are inviting a select group of teams to work directly with CodeCounsel before
-              general availability. We will deliver a free assessment of risk and gaps in your
-              development process in exchange for real workflow insight that helps drive the roadmap.
+              general availability. You get a free assessment of where your product reviews,
+              approvals, and live features may be out of sync. In return, we learn from the real
+              workflows that should shape the product.
             </p>
           </div>
           <a href="/demo" className="cc-btn cc-btn-primary">
@@ -40,7 +41,7 @@ export function PartnershipsPage() {
         <div className="cc-page">
           <div className="cc-section-heading">
             <span>What you get / what you give</span>
-            <h2>A symbiotic program to make sure that provides value today, and helps us build a product you will love.</h2>
+            <h2>A focused partnership that gives you value now and helps us build the right product.</h2>
           </div>
           <div className="cc-exchange-grid">
             <div className="cc-exchange-col receive">
@@ -75,20 +76,20 @@ export function PartnershipsPage() {
         <div className="cc-page">
           <div className="cc-section-heading">
             <span>Who is this for</span>
-            <h2>Built for teams who prioritize speed <em>and</em> accuracy in development.</h2>
+            <h2>Built for teams that move quickly but still need to prove what is live.</h2>
           </div>
           <div className="cc-card-grid three">
             <article className="cc-info-card">
               <h3>In-house legal and privacy teams</h3>
-              <p>For growth-stage or enterprise tech companies managing evolving product obligations.</p>
+              <p>For teams reviewing product changes, privacy commitments, disclosures, and customer obligations.</p>
             </article>
             <article className="cc-info-card">
               <h3>Product and engineering orgs</h3>
-              <p>For teams where legal coverage is lean and implementation changes faster than review cycles.</p>
+              <p>For teams shipping faster than legal, privacy, and compliance reviews can manually track.</p>
             </article>
             <article className="cc-info-card">
               <h3>Compliance and GRC teams</h3>
-              <p>For groups accountable for audit trails, controls, and cross-functional alignment.</p>
+              <p>For groups that need clear evidence of what was approved, what changed, and who reviewed it.</p>
             </article>
           </div>
         </div>
@@ -98,14 +99,14 @@ export function PartnershipsPage() {
         <div className="cc-page">
           <div className="cc-section-heading">
             <span>How it works</span>
-            <h2>Four steps from fit check to product feedback.</h2>
+            <h2>Four steps from fit check to useful product insight.</h2>
           </div>
           <div className="cc-step-grid">
             {[
               ['Apply & align', 'Short conversation to confirm fit and scope. We select partners where we can deliver immediate value.'],
-              ['Connect your sources', 'Link your existing tools using CodeCounsels existing secure connectors.'],
-              ['Receive your assessment', 'We assess drift between intent and implementation and provide structure for long-term alignment.'],
-              ['Shape the roadmap', 'Weekly or monthly feedback sessions where your feedback directly informs our next build.'],
+              ['Connect your sources', 'Link the tools and documents your teams already use for product review and approval.'],
+              ['Receive your assessment', 'We identify where approved requirements, disclosures, or controls may no longer match what is live.'],
+              ['Shape the roadmap', 'Weekly or monthly feedback sessions where your input directly informs our next build.'],
             ].map(([title, body], index) => (
               <article className="cc-step-card" key={title}>
                 <span>{index + 1}</span>
@@ -127,22 +128,22 @@ export function PartnershipsPage() {
             <article className="cc-info-card compact">
               <Lock className="cc-card-icon" />
               <h3>Mutual confidentiality</h3>
-              <p>All information shared during the program including product plans, workflows, and documentation is treated as confidential by both parties. A mututal NDA is required prior to onboarding.</p>
+              <p>Information shared during the program, including product plans, workflows, and documentation, is treated as confidential by both parties. A mutual NDA is required before onboarding.</p>
             </article>
             <article className="cc-info-card compact">
               <ShieldCheck className="cc-card-icon" />
               <h3>Data use</h3>
-              <p>Partner data and documents are used solely to deliver assessments and improve CodeCounsel's product. No partner data is shared with third parties, used for model training, or retained beyond the program without agreement.</p>
+              <p>Partner data and documents are used only to deliver assessments and improve CodeCounsel. No partner data is shared with third parties, used for model training, or retained beyond the program without agreement.</p>
             </article>
             <article className="cc-info-card compact">
               <ClipboardList className="cc-card-icon" />
               <h3>Intellectual property</h3>
-              <p>Partner data and documents are used solely to deliver assessments and improve CodeCounsel's product. No partner data is shared with third parties, used for model training, or retained beyond the program without agreement.</p>
+              <p>You keep ownership of your materials, documents, code, data, and internal workflows. CodeCounsel owns the product improvements and general learnings developed through the program.</p>
             </article>
             <article className="cc-info-card compact">
               <MessageSquare className="cc-card-icon" />
               <h3>Termination</h3>
-              <p>Either party may exit the program with 7 days written notice. Upon exit, CodeCounsel will delete or return partner materials as directed. Confidentiality obligations survive termination.</p>
+              <p>Either party may leave the program with 7 days written notice. Upon exit, CodeCounsel will delete or return partner materials as directed. Confidentiality obligations survive termination.</p>
             </article>
           </div>
         </div>

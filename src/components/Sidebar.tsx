@@ -13,11 +13,11 @@ interface SidebarProps {
 }
 
 const navItems = [
-  { id: 'overview' as NavSection, label: 'Overview', icon: LayoutDashboard },
-  { id: 'live-reviews' as NavSection, label: 'Live Reviews', icon: GitCompare, badge: '7' },
-  { id: 'contracts' as NavSection, label: 'System Contracts', icon: FileText },
-  { id: 'sources' as NavSection, label: 'Source Explorer', icon: Database },
-  { id: 'audit' as NavSection, label: 'Audit Trail', icon: Clock },
+  { id: 'overview' as NavSection, label: 'Product Overview', icon: LayoutDashboard },
+  { id: 'live-reviews' as NavSection, label: 'Reviews', icon: GitCompare, badge: '3' },
+  { id: 'contracts' as NavSection, label: 'Contracts', icon: FileText },
+  { id: 'sources' as NavSection, label: 'Sources', icon: Database },
+  { id: 'audit' as NavSection, label: 'History', icon: Clock },
   { id: 'settings' as NavSection, label: 'Settings', icon: Settings },
 ];
 
@@ -30,7 +30,7 @@ export function Sidebar({ activeSection, onNavigate }: SidebarProps) {
           <LogoMark className="h-7 w-7" />
           <div>
             <div className="font-bold text-sm text-gray-900 leading-none">CodeCounsel</div>
-            <div className="text-[10px] text-gray-400 mt-0.5 font-medium">Live System Contracts</div>
+            <div className="text-[10px] text-gray-400 mt-0.5 font-medium">Product Change Review</div>
           </div>
         </div>
       </div>

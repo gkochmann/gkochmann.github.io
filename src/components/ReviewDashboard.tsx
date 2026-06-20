@@ -48,7 +48,10 @@ function now() {
 }
 
 export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
-  const [features, setFeatures] = useState<DemoFeature[]>(demoFeatures);
+  const visibleReviewIds = ['smart-profiles', 'nearby-ranking', 'home-feed'];
+  const [features, setFeatures] = useState<DemoFeature[]>(
+    demoFeatures.filter(feature => visibleReviewIds.includes(feature.id)),
+  );
   const [activeId, setActiveId] = useState(initialFeatureId ?? demoFeatures[0].id);
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showDisclosure, setShowDisclosure] = useState(false);
@@ -132,13 +135,16 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
   }
 
   const Icon = categoryIcon[feature.category] ?? Shield;
+  const visibleApprovedIntent = feature.approvedIntent.slice(0, 3);
+  const visibleImplementation = feature.currentImplementation.slice(0, 3);
+  const visibleDiffs = feature.diffs.slice(0, 3);
 
   return (
     <div className="flex-1 flex min-h-0 overflow-hidden">
       {/* Feature selector sidebar */}
       <div className="w-52 shrink-0 border-r border-gray-100 bg-white flex flex-col">
         <div className="px-4 py-3 border-b border-gray-100">
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Features</h3>
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Reviews</h3>
         </div>
         <div className="flex-1 overflow-y-auto p-2 space-y-1">
           {features.map(f => {
@@ -190,10 +196,9 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
                     <StatusBadge status={feature.status} />
                   </div>
                   <div className="text-xs text-gray-400 mt-0.5 flex items-center gap-3 flex-wrap">
-                    <span>Friendli Mobile App · {feature.platform}</span>
+                    <span>Friendli Workspace</span>
                     <span>Owner: {feature.owner}</span>
                     <span>Scan: {feature.latestScan}</span>
-                    <span>{feature.releaseTarget}</span>
                   </div>
                 </div>
               </div>
@@ -227,19 +232,19 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
               transition={{ duration: 0.25 }}
               className="flex-1 flex min-w-0 overflow-hidden"
             >
-              {/* Column 1: Approved Intent */}
+              {/* Column 1: What Was Approved */}
               <div className="w-[30%] min-w-0 flex flex-col border-r border-gray-100 overflow-hidden">
                 <div className="px-4 py-2.5 border-b border-gray-100 bg-green-50/50">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-3.5 w-3.5 text-green-600" />
-                    <span className="text-xs font-semibold text-green-800">Approved Intent</span>
+                    <span className="text-xs font-semibold text-green-800">What Was Approved</span>
                     <span className="ml-auto text-[10px] text-green-600 bg-green-100 px-1.5 py-0.5 rounded-full font-medium">
-                      {feature.approvedIntent.length} requirements
+                      {visibleApprovedIntent.length} requirements
                     </span>
                   </div>
                 </div>
                 <div className="flex-1 overflow-y-auto p-3 space-y-2">
-                  {feature.approvedIntent.map(req => (
+                  {visibleApprovedIntent.map(req => (
                     <div key={req.id} className="bg-white border border-gray-100 rounded-xl p-3 shadow-card">
                       <div className="flex items-start justify-between gap-2">
                         <h4 className="text-xs font-semibold text-gray-800 leading-snug">{req.title}</h4>
@@ -260,19 +265,19 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
                 </div>
               </div>
 
-              {/* Column 2: Current Implementation */}
+              {/* Column 2: What Is Live */}
               <div className="w-[30%] min-w-0 flex flex-col border-r border-gray-100 overflow-hidden">
                 <div className="px-4 py-2.5 border-b border-gray-100 bg-red-50/40">
                   <div className="flex items-center gap-2">
                     <AlertTriangle className="h-3.5 w-3.5 text-red-600" />
-                    <span className="text-xs font-semibold text-red-800">Current Implementation</span>
+                    <span className="text-xs font-semibold text-red-800">What Is Live</span>
                     <span className="ml-auto text-[10px] text-red-600 bg-red-100 px-1.5 py-0.5 rounded-full font-medium">
-                      {feature.diffs.length} drifts
+                      {visibleDiffs.length} changes
                     </span>
                   </div>
                 </div>
                 <div className="flex-1 overflow-y-auto p-3 space-y-2">
-                  {feature.currentImplementation.map(impl => {
+                  {visibleImplementation.map(impl => {
                     const req = feature.approvedIntent.find(r => r.id === impl.requirementId);
                     return (
                       <div
@@ -303,23 +308,23 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
                 </div>
               </div>
 
-              {/* Column 3: Diff / Review */}
+              {/* Column 3: Needs Review */}
               <div className="flex-1 min-w-0 flex flex-col overflow-hidden">
                 <div className="px-4 py-2.5 border-b border-gray-100 bg-orange-50/30">
                   <div className="flex items-center gap-2">
                     <AlertCircle className="h-3.5 w-3.5 text-orange-600" />
-                    <span className="text-xs font-semibold text-orange-800">Diff / Review</span>
-                    <span className="ml-auto text-[10px] text-orange-600">92% evidence confidence</span>
+                    <span className="text-xs font-semibold text-orange-800">Needs Review</span>
+                    <span className="ml-auto text-[10px] text-orange-600">Evidence linked</span>
                   </div>
                 </div>
                 <div className="flex-1 overflow-y-auto p-3 space-y-3">
                   {/* Drift table */}
                   <div className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-card">
                     <div className="px-3 py-2 border-b border-gray-50 bg-gray-50/50">
-                      <span className="text-[11px] font-semibold text-gray-700">Material Changes Detected</span>
+                      <span className="text-[11px] font-semibold text-gray-700">Changes To Review</span>
                     </div>
                     <div className="divide-y divide-gray-50">
-                      {feature.diffs.map(diff => (
+                      {visibleDiffs.map(diff => (
                         <div key={diff.id} className="px-3 py-2 flex items-start gap-2">
                           <div className="flex-1 min-w-0">
                             <div className="text-[10px] font-semibold text-gray-800">{diff.requirement}</div>
@@ -346,7 +351,7 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
                       <AlertTriangle className={`h-4 w-4 shrink-0 mt-0.5 ${feature.risk === 'Critical' ? 'text-red-600' : 'text-orange-600'}`} />
                       <div>
                         <div className={`text-xs font-bold ${feature.risk === 'Critical' ? 'text-red-800' : 'text-orange-800'}`}>
-                          Material Change Detected
+                          Important Change Detected
                         </div>
                         <p className={`text-[10px] mt-0.5 leading-relaxed ${feature.risk === 'Critical' ? 'text-red-700' : 'text-orange-700'}`}>
                           {feature.summary}
@@ -357,7 +362,7 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
 
                   {/* Suggested reviewers */}
                   <div className="bg-white rounded-xl border border-gray-100 p-3 shadow-card">
-                    <div className="text-[11px] font-semibold text-gray-700 mb-2">Suggested Reviewers</div>
+                    <div className="text-[11px] font-semibold text-gray-700 mb-2">Who Should Review</div>
                     <div className="flex flex-wrap gap-1.5">
                       {feature.suggestedReviewers.map(r => (
                         <span key={r} className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 border border-gray-100 rounded-lg text-[10px] text-gray-700 font-medium">
@@ -376,13 +381,13 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
                       onClick={() => setShowReviewModal(true)}
                       className="flex items-center justify-center gap-1.5 px-3 py-2.5 bg-[#3157F6] text-white rounded-xl text-xs font-semibold hover:bg-[#2347e0] transition-colors col-span-2"
                     >
-                      Start Review Task <ArrowRight className="h-3.5 w-3.5" />
+                      Start Review <ArrowRight className="h-3.5 w-3.5" />
                     </button>
                     <button
                       onClick={() => setShowMarkLow(true)}
                       className="flex items-center justify-center gap-1.5 px-3 py-2 bg-white border border-gray-200 text-gray-700 rounded-xl text-xs font-medium hover:bg-gray-50 transition-colors"
                     >
-                      Mark Low Risk
+                      Mark Lower Risk
                     </button>
                     <button
                       onClick={handleClarification}
@@ -394,17 +399,17 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
                       onClick={() => setShowDisclosure(true)}
                       className="flex items-center justify-center gap-1.5 px-3 py-2 bg-white border border-gray-200 text-gray-700 rounded-xl text-xs font-medium hover:bg-gray-50 transition-colors col-span-2"
                     >
-                      <FileText className="h-3 w-3" /> Create Disclosure Update
+                      <FileText className="h-3 w-3" /> Draft Disclosure Update
                     </button>
                   </div>
 
                   {/* Comment box */}
                   <div className="bg-white rounded-xl border border-gray-100 p-3 shadow-card">
-                    <div className="text-[11px] font-semibold text-gray-700 mb-2">Add Review Comment</div>
+                    <div className="text-[11px] font-semibold text-gray-700 mb-2">Add A Review Note</div>
                     <textarea
                       value={comment}
                       onChange={e => setComment(e.target.value)}
-                      placeholder="No reviewer comments yet — add a note..."
+                      placeholder="Add context for the review..."
                       rows={2}
                       className="w-full px-2.5 py-2 text-xs border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-[#3157F6]/20 focus:border-[#3157F6]/40 text-gray-700 placeholder-gray-400"
                     />
@@ -413,14 +418,14 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
                       disabled={!comment.trim()}
                       className="mt-2 flex items-center gap-1.5 px-3 py-1.5 bg-[#3157F6] text-white rounded-lg text-xs font-medium hover:bg-[#2347e0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <Send className="h-3 w-3" /> Post Comment
+                      <Send className="h-3 w-3" /> Add Note
                     </button>
                   </div>
 
                   {/* Audit trail */}
                   <div className="bg-white rounded-xl border border-gray-100 shadow-card overflow-hidden">
                     <div className="px-3 py-2.5 border-b border-gray-50 flex items-center justify-between">
-                      <span className="text-[11px] font-semibold text-gray-700">Audit Trail</span>
+                      <span className="text-[11px] font-semibold text-gray-700">Review History</span>
                       <span className="text-[10px] text-gray-400">{feature.auditTrail.length} events</span>
                     </div>
                     <div className="p-3">
@@ -433,7 +438,7 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
                     <div className="px-3 py-2.5 border-b border-gray-50">
                       <div className="flex items-center gap-2">
                         <span className="text-[11px] font-semibold text-gray-700">Mobile Preview</span>
-                        <span className="text-[10px] text-red-600 bg-red-50 px-1.5 py-0.5 rounded-full font-medium">Drift highlighted</span>
+                        <span className="text-[10px] text-red-600 bg-red-50 px-1.5 py-0.5 rounded-full font-medium">Change highlighted</span>
                       </div>
                     </div>
                     <div className="p-4">

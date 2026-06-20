@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowRight, Shield, Cpu, MessageSquare, Layout,
-  TrendingUp, AlertTriangle, CheckCircle, Clock
+  CheckCircle
 } from 'lucide-react';
 import { demoFeatures, overviewMetrics } from '../data/demoData';
 import { RiskBadge } from './RiskBadge';
@@ -10,7 +10,6 @@ import { StatusBadge } from './StatusBadge';
 
 interface OverviewScreenProps {
   onOpenReview: (featureId: string) => void;
-  onExploreSources: () => void;
 }
 
 function AnimatedCounter({ target, duration = 1500 }: { target: number; duration?: number }) {
@@ -48,7 +47,10 @@ const categoryColor: Record<string, string> = {
   Design: 'text-indigo-600 bg-indigo-50',
 };
 
-export function OverviewScreen({ onOpenReview, onExploreSources }: OverviewScreenProps) {
+export function OverviewScreen({ onOpenReview }: OverviewScreenProps) {
+  const primaryFeature = demoFeatures[0];
+  const supportingFeatures = [demoFeatures[1], demoFeatures[3]];
+
   const containerVariants = {
     hidden: {},
     show: { transition: { staggerChildren: 0.07 } },
@@ -61,7 +63,7 @@ export function OverviewScreen({ onOpenReview, onExploreSources }: OverviewScree
 
   return (
     <div className="flex-1 overflow-y-auto p-6 space-y-6">
-      {/* Hero */}
+      {/* Product story */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -71,45 +73,29 @@ export function OverviewScreen({ onOpenReview, onExploreSources }: OverviewScree
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjA4KSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-40" />
         <div className="relative">
           <div className="flex items-start justify-between flex-wrap gap-4">
-            <div>
+            <div className="rounded-2xl border border-white/20 bg-white/12 px-5 py-4 backdrop-blur-sm">
+              <div className="text-xs font-semibold uppercase tracking-wide text-white/65">Workspace</div>
               <h1 className="text-2xl font-bold leading-tight">
-                Keep Friendli's approved intent<br className="hidden sm:block" /> aligned with what ships.
+                Friendli Production Workspace
               </h1>
               <p className="mt-2 text-white/75 text-sm max-w-2xl leading-relaxed">
-                CodeCounsel turns product, legal, privacy, ML, AI, and design reviews into live system contracts that continuously monitor the Friendli mobile app for material drift.
+                Friendli is a new social media app that helps people find new friends based on shared routines, nearby places, and interests.
               </p>
-            </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <button
-                onClick={() => onOpenReview('smart-profiles')}
-                className="flex items-center gap-2 px-4 py-2 bg-white text-[#3157F6] rounded-xl text-sm font-semibold hover:bg-white/90 transition-colors shadow-sm"
-              >
-                Open Live Review <ArrowRight className="h-4 w-4" />
-              </button>
-              <button
-                onClick={onExploreSources}
-                className="flex items-center gap-2 px-4 py-2 bg-white/15 text-white border border-white/20 rounded-xl text-sm font-medium hover:bg-white/20 transition-colors"
-              >
-                Explore Sources
-              </button>
             </div>
           </div>
 
-          {/* Stats row */}
-          <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {/* Summary row */}
+          <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
             {[
-              { label: 'Live Contracts', value: overviewMetrics.liveContracts },
-              { label: 'Material Changes', value: overviewMetrics.activeMaterialChanges, highlight: true },
-              { label: 'Auto-Classified', value: overviewMetrics.lowRiskAutoClassified },
-              { label: 'Pending Reviews', value: overviewMetrics.pendingReviews, highlight: true },
-              { label: 'Source Coverage', value: overviewMetrics.sourceCoverage, suffix: '%' },
-              { label: 'Last Scan', value: null, raw: overviewMetrics.lastScanTime },
+              { label: 'Reviews Needed', value: 3, highlight: true },
+              { label: 'Changes Found', value: overviewMetrics.activeMaterialChanges, highlight: true },
+              { label: 'Coverage', value: overviewMetrics.sourceCoverage, suffix: '%' },
+              { label: 'Sources Connected', value: 9 },
+              { label: 'Contracts Formed', value: overviewMetrics.liveContracts },
             ].map((stat, i) => (
               <div key={i} className={`rounded-xl p-3 ${stat.highlight ? 'bg-white/20 border border-white/30' : 'bg-white/10 border border-white/15'}`}>
                 <div className="text-xl font-bold">
-                  {stat.value !== null ? (
-                    <><AnimatedCounter target={stat.value} />{stat.suffix ?? ''}</>
-                  ) : stat.raw}
+                  <><AnimatedCounter target={stat.value} />{stat.suffix ?? ''}</>
                 </div>
                 <div className="text-[11px] text-white/65 mt-0.5 font-medium">{stat.label}</div>
               </div>
@@ -118,29 +104,29 @@ export function OverviewScreen({ onOpenReview, onExploreSources }: OverviewScree
         </div>
       </motion.div>
 
-      {/* Feature Cards */}
+      {/* Primary review */}
       <div>
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-gray-900">Active Material Changes</h2>
-          <span className="text-xs text-gray-400">{overviewMetrics.releaseTrain} · {overviewMetrics.releaseVersion}</span>
+          <h2 className="text-sm font-semibold text-gray-900">Reviews Needed</h2>
+          <span className="text-xs text-gray-400">Start with Smart Profiles</span>
         </div>
-
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-3"
+          className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-3"
         >
-          {demoFeatures.map(feature => {
+          {[primaryFeature, ...supportingFeatures].map((feature, index) => {
             const Icon = categoryIcon[feature.category] ?? Shield;
             const catColor = categoryColor[feature.category] ?? 'text-gray-600 bg-gray-50';
+            const isPrimary = index === 0;
 
             return (
               <motion.div
                 key={feature.id}
                 variants={itemVariants}
                 whileHover={{ y: -2, boxShadow: '0 8px 24px rgba(49,87,246,0.10)' }}
-                className="bg-white rounded-2xl border border-gray-100 p-4 cursor-pointer transition-shadow"
+                className={`bg-white rounded-2xl border p-4 cursor-pointer transition-shadow ${isPrimary ? 'border-[#3157F6]/20 lg:row-span-3' : 'border-gray-100'}`}
                 onClick={() => onOpenReview(feature.id)}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -158,7 +144,11 @@ export function OverviewScreen({ onOpenReview, onExploreSources }: OverviewScree
                   </div>
                 </div>
 
-                <p className="mt-3 text-xs text-gray-600 leading-relaxed line-clamp-2">{feature.driftSummary}</p>
+                <p className={`mt-3 text-xs text-gray-600 leading-relaxed ${isPrimary ? '' : 'line-clamp-2'}`}>
+                  {isPrimary
+                    ? 'Smart Profiles is approved for limited profile data, personalization, and 90 day retention. The live product now includes new data fields, analytics use, and longer retention.'
+                    : feature.driftSummary}
+                </p>
 
                 <div className="mt-3 flex items-center justify-between">
                   <div className="flex items-center gap-2 flex-wrap">
@@ -169,12 +159,11 @@ export function OverviewScreen({ onOpenReview, onExploreSources }: OverviewScree
                     className="flex items-center gap-1 text-[#3157F6] text-xs font-semibold hover:text-[#2347e0] transition-colors"
                     onClick={e => { e.stopPropagation(); onOpenReview(feature.id); }}
                   >
-                    Open Review <ArrowRight className="h-3.5 w-3.5" />
+                    Review <ArrowRight className="h-3.5 w-3.5" />
                   </button>
                 </div>
 
-                {/* Source pills */}
-                <div className="mt-2.5 flex flex-wrap gap-1.5">
+                <div className="mt-3 flex flex-wrap gap-1.5">
                   {feature.approvedDocs.slice(0, 3).map(doc => (
                     <span key={doc} className="px-1.5 py-0.5 bg-gray-50 border border-gray-100 rounded text-[10px] text-gray-500 font-medium">
                       {doc}
@@ -190,21 +179,19 @@ export function OverviewScreen({ onOpenReview, onExploreSources }: OverviewScree
         </motion.div>
       </div>
 
-      {/* Recent Activity + Health */}
+      {/* Sources + contracts summary */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Recent Activity */}
         <div className="bg-white rounded-2xl border border-gray-100 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <Clock className="h-4 w-4 text-gray-400" />
-            <h3 className="text-sm font-semibold text-gray-800">Recent Review Activity</h3>
+            <CheckCircle className="h-4 w-4 text-green-500" />
+            <h3 className="text-sm font-semibold text-gray-800">Sources CodeCounsel Used</h3>
           </div>
           <div className="space-y-3">
             {[
-              { icon: AlertTriangle, color: 'text-red-500 bg-red-50', text: 'Smart Profiles — 5 material changes detected', time: '12 min ago' },
-              { icon: AlertTriangle, color: 'text-red-500 bg-red-50', text: 'Plan Assistant — Prompt v7 guardrail removed', time: '12 min ago' },
-              { icon: TrendingUp, color: 'text-orange-500 bg-orange-50', text: 'Home Feed experiment expanded beyond scope', time: '1 day ago' },
-              { icon: AlertTriangle, color: 'text-orange-500 bg-orange-50', text: 'Nearby Ranking — stale model card flagged', time: '3 days ago' },
-              { icon: CheckCircle, color: 'text-green-500 bg-green-50', text: 'Push Notifications — review completed', time: '10 days ago' },
+              { icon: CheckCircle, color: 'text-blue-600 bg-blue-50', text: 'Product plan and approved requirements', time: 'PRD v3.2' },
+              { icon: CheckCircle, color: 'text-blue-600 bg-blue-50', text: 'Privacy review and disclosure copy', time: 'Approved Apr 15' },
+              { icon: CheckCircle, color: 'text-blue-600 bg-blue-50', text: 'Mobile code, backend services, and analytics plan', time: 'Scanned 12 min ago' },
+              { icon: CheckCircle, color: 'text-blue-600 bg-blue-50', text: 'Data governance and retention policy', time: 'Policy v4' },
             ].map((item, i) => {
               const Icon = item.icon;
               return (
@@ -222,27 +209,24 @@ export function OverviewScreen({ onOpenReview, onExploreSources }: OverviewScree
           </div>
         </div>
 
-        {/* Source Health */}
         <div className="bg-white rounded-2xl border border-gray-100 p-4">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-semibold text-gray-800">Connected Sources Health</h3>
-            <span className="text-xs text-gray-400">96% avg coverage</span>
+            <h3 className="text-sm font-semibold text-gray-800">Contracts Watching The Product</h3>
+            <span className="text-xs text-gray-400">{overviewMetrics.liveContracts} live contracts</span>
           </div>
           <div className="space-y-2.5">
             {[
-              { name: 'GitHub Mobile Repo', coverage: 98, status: 'Connected', time: '12 min ago' },
-              { name: 'Backend Services Repo', coverage: 95, status: 'Connected', time: '12 min ago' },
-              { name: 'ML Model Registry', coverage: 92, status: 'Connected', time: '1 hr ago' },
-              { name: 'Prompt Registry', coverage: 96, status: 'Connected', time: '45 min ago' },
-              { name: 'Figma Designs', coverage: 79, status: 'Connected', time: '3 hrs ago' },
-              { name: 'Analytics Tracking Plan', coverage: 82, status: 'Connected', time: '1 hr ago' },
+              { name: 'Profile Data Collection', coverage: 100, status: 'Needs review' },
+              { name: 'Profile Data Use', coverage: 100, status: 'Needs review' },
+              { name: 'Disclosure Coverage', coverage: 82, status: 'Partial' },
+              { name: 'Retention Policy', coverage: 50, status: 'Changed' },
             ].map((src, i) => (
               <div key={i} className="flex items-center gap-3">
                 <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${src.coverage > 90 ? 'bg-green-500' : src.coverage > 80 ? 'bg-yellow-500' : 'bg-orange-500'}`} />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-xs text-gray-700 truncate">{src.name}</span>
-                    <span className="text-[10px] text-gray-400 shrink-0">{src.coverage}%</span>
+                    <span className="text-[10px] text-gray-400 shrink-0">{src.status}</span>
                   </div>
                   <div className="mt-1 h-1 bg-gray-100 rounded-full overflow-hidden">
                     <motion.div

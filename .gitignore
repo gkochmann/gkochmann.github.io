@@ -4,3 +4,4 @@ dist
 .claude
 *.local
 html_files/
+context

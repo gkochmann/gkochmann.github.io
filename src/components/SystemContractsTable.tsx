@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Filter } from 'lucide-react';
 import { systemContracts } from '../data/demoData';
-import { RiskBadge } from './RiskBadge';
 import { StatusBadge } from './StatusBadge';
 
 export function SystemContractsTable() {
@@ -10,8 +9,10 @@ export function SystemContractsTable() {
   const [filter, setFilter] = useState<string>('All');
 
   const filters = ['All', 'Drift Detected', 'Review Required', 'Aligned'];
+  const visibleContractIds = ['sc-1', 'sc-2', 'sc-4', 'sc-5', 'sc-6', 'sc-7', 'sc-8', 'sc-9', 'sc-10', 'sc-12'];
+  const visibleContracts = systemContracts.filter(contract => visibleContractIds.includes(contract.id));
 
-  const filtered = systemContracts.filter(c => {
+  const filtered = visibleContracts.filter(c => {
     const matchSearch = c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.productArea.toLowerCase().includes(search.toLowerCase()) ||
       c.owner.toLowerCase().includes(search.toLowerCase());
@@ -22,9 +23,9 @@ export function SystemContractsTable() {
   return (
     <div className="flex-1 overflow-y-auto p-6">
       <div className="mb-5">
-        <h1 className="text-xl font-bold text-gray-900">System Contracts</h1>
+        <h1 className="text-xl font-bold text-gray-900">Contracts</h1>
         <p className="text-sm text-gray-500 mt-0.5">
-          {systemContracts.length} live contracts monitoring Friendli Mobile App
+          Contracts define what should stay true as Friendli changes.
         </p>
       </div>
 
@@ -62,7 +63,7 @@ export function SystemContractsTable() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-100 bg-gray-50/50">
-                {['Contract', 'Product Area', 'Source Docs', 'Implementation', 'Last Scan', 'Status', 'Owner', 'Risk'].map(h => (
+                {['Contract', 'Approved Source', 'Live Evidence', 'Status', 'Owner'].map(h => (
                   <th key={h} className="text-left px-4 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wide whitespace-nowrap">
                     {h}
                   </th>
@@ -82,11 +83,8 @@ export function SystemContractsTable() {
                     <span className="text-sm font-semibold text-gray-900">{contract.name}</span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className="text-xs text-gray-600 whitespace-nowrap">{contract.productArea}</span>
-                  </td>
-                  <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
-                      {contract.sourceDocs.slice(0, 2).map(doc => (
+                      {contract.sourceDocs.slice(0, 1).map(doc => (
                         <span key={doc} className="px-1.5 py-0.5 bg-gray-100 rounded text-[10px] text-gray-600 whitespace-nowrap">
                           {doc}
                         </span>
@@ -99,9 +97,6 @@ export function SystemContractsTable() {
                     </code>
                   </td>
                   <td className="px-4 py-3">
-                    <span className="text-[11px] text-gray-500 whitespace-nowrap">{contract.lastScan}</span>
-                  </td>
-                  <td className="px-4 py-3">
                     <StatusBadge status={contract.driftStatus} size="sm" />
                   </td>
                   <td className="px-4 py-3">
@@ -111,9 +106,6 @@ export function SystemContractsTable() {
                       </div>
                       <span className="text-xs text-gray-700 whitespace-nowrap">{contract.owner}</span>
                     </div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <RiskBadge risk={contract.risk} size="sm" pulse={contract.risk === 'Critical'} />
                   </td>
                 </motion.tr>
               ))}
@@ -128,7 +120,7 @@ export function SystemContractsTable() {
         )}
 
         <div className="px-4 py-3 border-t border-gray-100 bg-gray-50/30 flex items-center justify-between">
-          <span className="text-xs text-gray-400">Showing {filtered.length} of {systemContracts.length} contracts</span>
+          <span className="text-xs text-gray-400">Showing {filtered.length} of {visibleContracts.length} contracts</span>
           <span className="text-xs text-gray-400">Last full scan: 12 min ago</span>
         </div>
       </div>
