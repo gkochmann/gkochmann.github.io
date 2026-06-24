@@ -149,7 +149,6 @@ export function OverviewScreen({ onOpenReview }: OverviewScreenProps) {
                     ? 'Smart Profiles is approved for limited profile data, personalization, and 90 day retention. The live product now includes new data fields, analytics use, and longer retention.'
                     : feature.driftSummary}
                 </p>
-
                 <div className="mt-3 flex items-center justify-between">
                   <div className="flex items-center gap-2 flex-wrap">
                     <StatusBadge status={feature.status} size="sm" />

@@ -12,10 +12,10 @@ export function HomePage() {
                 <Sparkles className="h-3.5 w-3.5" />
                 Product governance for fast-moving teams
               </div>
-              <h1>Your product changes constantly. Do you know what is live?</h1>
+              <h1>Your product changes constantly. Can you keep up?</h1>
               <p>
-                CodeCounsel helps legal, compliance, product, and engineering teams track whether
-                shipped features still match approved uses, controls, disclosures, and requirements.
+                CodeCounsel helps legal, compliance, product, and engineering teams ensure that
+                the features that are shipped still match approved uses, controls, disclosures, and requirements.
               </p>
               <div className="cc-hero-actions">
                 <a href="/demo" className="cc-btn cc-btn-primary">
