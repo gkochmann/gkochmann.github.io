@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle, ClipboardList, FileSearch, Lock, MessageSquare, Rocket, ShieldCheck, Users } from 'lucide-react';
+import { ArrowRight, Calendar, CheckCircle, ClipboardList, FileSearch, Lock, MessageSquare, Rocket, ShieldCheck, Users } from 'lucide-react';
 
 const receiveItems = [
   { icon: FileSearch, text: 'A clear assessment of where your approvals, docs, and product behavior may be out of sync' },
@@ -31,9 +31,19 @@ export function PartnershipsPage() {
               workflows that should shape the product.
             </p>
           </div>
-          <a href="/demo" className="cc-btn cc-btn-primary">
-            Explore the demo <ArrowRight className="h-4 w-4" />
-          </a>
+          <div className="cc-hero-actions">
+            <a href="/demo" className="cc-btn cc-btn-primary">
+              Explore the demo <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="https://calendly.com/olivermschwartz/30min"
+              target="_blank"
+              rel="noreferrer"
+              className="cc-btn cc-btn-secondary"
+            >
+              Schedule a call <Calendar className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </section>
 
