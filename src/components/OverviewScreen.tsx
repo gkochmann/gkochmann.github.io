@@ -7,6 +7,7 @@ import {
 import { demoFeatures, overviewMetrics } from '../data/demoData';
 import { RiskBadge } from './RiskBadge';
 import { StatusBadge } from './StatusBadge';
+import { useCompany } from './CompanyContext';
 
 interface OverviewScreenProps {
   onOpenReview: (featureId: string) => void;
@@ -48,6 +49,7 @@ const categoryColor: Record<string, string> = {
 };
 
 export function OverviewScreen({ onOpenReview }: OverviewScreenProps) {
+  const { name: companyName } = useCompany();
   const primaryFeature = demoFeatures[0];
   const supportingFeatures = [demoFeatures[1], demoFeatures[3]];
 
@@ -76,10 +78,10 @@ export function OverviewScreen({ onOpenReview }: OverviewScreenProps) {
             <div className="rounded-2xl border border-white/20 bg-white/12 px-5 py-4 backdrop-blur-sm">
               <div className="text-xs font-semibold uppercase tracking-wide text-white/65">Workspace</div>
               <h1 className="text-2xl font-bold leading-tight">
-                Friendli Production Workspace
+                {companyName} Production Workspace
               </h1>
               <p className="mt-2 text-white/75 text-sm max-w-2xl leading-relaxed">
-                Friendli is a new social media app that helps people find new friends based on shared routines, nearby places, and interests.
+                {companyName} is a new social media app that helps people find new friends based on shared routines, nearby places, and interests.
               </p>
             </div>
           </div>
@@ -108,7 +110,7 @@ export function OverviewScreen({ onOpenReview }: OverviewScreenProps) {
       <div>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-semibold text-gray-900">Reviews Needed</h2>
-          <span className="text-xs text-gray-400">Start with Smart Profiles</span>
+          <span className="text-xs text-gray-400">Start with Automated Decision Making V1</span>
         </div>
         <motion.div
           variants={containerVariants}
@@ -128,6 +130,7 @@ export function OverviewScreen({ onOpenReview }: OverviewScreenProps) {
                 whileHover={{ y: -2, boxShadow: '0 8px 24px rgba(49,87,246,0.10)' }}
                 className={`bg-white rounded-2xl border p-4 cursor-pointer transition-shadow ${isPrimary ? 'border-[#3157F6]/20 lg:row-span-3' : 'border-gray-100'}`}
                 onClick={() => onOpenReview(feature.id)}
+                data-tour={isPrimary ? 'primary-review-card' : undefined}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
@@ -146,7 +149,7 @@ export function OverviewScreen({ onOpenReview }: OverviewScreenProps) {
 
                 <p className={`mt-3 text-xs text-gray-600 leading-relaxed ${isPrimary ? '' : 'line-clamp-2'}`}>
                   {isPrimary
-                    ? 'Smart Profiles is approved for limited profile data, personalization, and 90 day retention. The live product now includes new data fields, analytics use, and longer retention.'
+                    ? 'Automated Decision Making V1 is approved for limited profile data, personalization, and 90 day retention. The live product now includes new data fields, analytics use, and longer retention.'
                     : feature.driftSummary}
                 </p>
                 <div className="mt-3 flex items-center justify-between">

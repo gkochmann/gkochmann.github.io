@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useCompany } from './CompanyContext';
 
 function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) {
   return (
@@ -42,6 +43,7 @@ function SettingsRow({
 }
 
 export function SettingsScreen() {
+  const { name: companyName } = useCompany();
   const [settings, setSettings] = useState({
     autoScan: true,
     scanFrequency: 15,
@@ -66,7 +68,7 @@ export function SettingsScreen() {
     <div className="flex-1 overflow-y-auto p-6 space-y-4">
       <div className="mb-1">
         <h1 className="text-xl font-bold text-gray-900">Settings</h1>
-        <p className="text-sm text-gray-500 mt-0.5">Workspace configuration for Friendli Production</p>
+        <p className="text-sm text-gray-500 mt-0.5">Workspace configuration for {companyName} Production</p>
       </div>
 
       {/* Scan Settings */}

@@ -6,6 +6,7 @@ import {
   CheckCircle, RefreshCw
 } from 'lucide-react';
 import { connectedSources, type ConnectedSource } from '../data/demoData';
+import { useDeepBrand } from './CompanyContext';
 
 const iconMap: Record<string, React.ElementType> = {
   github: Github,
@@ -94,7 +95,7 @@ function SourceDetailPanel({ source, onClose }: { source: ConnectedSource; onClo
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
+        className="fixed inset-x-0 top-[57px] bottom-0 bg-black/30 backdrop-blur-sm z-40"
         onClick={onClose}
       />
       <motion.div
@@ -102,7 +103,7 @@ function SourceDetailPanel({ source, onClose }: { source: ConnectedSource; onClo
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: 40 }}
         transition={{ duration: 0.3 }}
-        className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-white border-l border-gray-100 z-50 flex flex-col shadow-2xl"
+        className="fixed right-0 top-[57px] bottom-0 w-full max-w-md bg-white border-l border-gray-100 z-50 flex flex-col shadow-2xl"
       >
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
@@ -167,7 +168,7 @@ function SourceDetailPanel({ source, onClose }: { source: ConnectedSource; onClo
           <div className="mt-4">
             <h4 className="text-sm font-semibold text-gray-800 mb-3">Contracts Using This Source</h4>
             <div className="space-y-1.5">
-              {['Smart Profiles', 'Nearby Ranking Model', 'Plan Assistant', 'Home Feed Redesign'].slice(0, 3).map(name => (
+              {['Automated Decision Making V1', 'Nearby Ranking Model', 'Plan Assistant', 'Home Feed Redesign'].slice(0, 3).map(name => (
                 <div key={name} className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#3157F6]" />
                   <span className="text-xs text-gray-700">{name}</span>
@@ -182,6 +183,7 @@ function SourceDetailPanel({ source, onClose }: { source: ConnectedSource; onClo
 }
 
 export function SourceExplorer() {
+  const brandedSources = useDeepBrand(connectedSources);
   const [selectedSource, setSelectedSource] = useState<ConnectedSource | null>(null);
 
   return (
@@ -194,7 +196,7 @@ export function SourceExplorer() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {connectedSources.map((source, i) => (
+        {brandedSources.map((source, i) => (
           <motion.div
             key={source.id}
             initial={{ opacity: 0, y: 12 }}

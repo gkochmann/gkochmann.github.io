@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { LogoMark } from './LogoMark';
 
 const steps = [
-  'Connecting to Friendli workspace...',
+  'Connecting to workspace...',
   'Scanning GitHub Mobile Repo...',
   'Scanning Backend Services...',
   'Indexing ML Model Registry...',
@@ -63,7 +63,7 @@ export function LoadingScreen({ onDone }: LoadingScreenProps) {
         <LogoMark className="mb-5 h-16 w-16" />
 
         <h1 className="text-xl font-bold text-gray-900 mb-1">CodeCounsel</h1>
-        <p className="text-sm text-gray-500 mb-8">Friendli Production Workspace</p>
+        <p className="text-sm text-gray-500 mb-8">Production Workspace</p>
 
         {/* Progress bar */}
         <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden mb-4">

@@ -98,11 +98,11 @@ export interface SystemContract {
   risk: RiskLevel;
 }
 
-// ─── Use Case 1: Privacy — Smart Profiles ────────────────────────────────────
+// ─── Use Case 1: Privacy — Automated Decision Making V1 ────────────────────────────────────
 
 const smartProfilesFeature: DemoFeature = {
   id: 'smart-profiles',
-  name: 'Smart Profiles',
+  name: 'Automated Decision Making V1',
   category: 'Privacy',
   productArea: 'User Identity & Privacy',
   owner: 'Maya Chen',
@@ -131,7 +131,7 @@ const smartProfilesFeature: DemoFeature = {
       id: 'sp-r2',
       title: 'Data Usage',
       approvedBehavior: 'Use profile information only for personalization and friend discovery features.',
-      sourceDoc: 'Legal Approval Memo — Smart Profiles',
+      sourceDoc: 'Legal Approval Memo — Automated Decision Making V1',
       approvedDate: 'Apr 15, 2026',
       approver: 'Legal Team',
       status: 'Drifted',
@@ -222,7 +222,7 @@ const smartProfilesFeature: DemoFeature = {
     { id: 'sp-a1', timestamp: 'May 30, 2026 — 9:41 AM', actor: 'CodeCounsel Scanner', actorInitials: 'CC', action: 'Code scan detected drift', detail: '5 material changes identified across 4 approved requirements.', type: 'scan' },
     { id: 'sp-a2', timestamp: 'May 28, 2026 — 2:15 PM', actor: 'CodeCounsel Scanner', actorInitials: 'CC', action: 'Material change classified', detail: 'Device ID field detected in feature pipeline — no prior approval.', type: 'scan' },
     { id: 'sp-a3', timestamp: 'Apr 18, 2026 — 11:30 AM', actor: 'Rachel Kim', actorInitials: 'RK', action: 'Requirement approved', detail: 'Privacy Impact Assessment v2.1 approved. Disclosures signed off.', type: 'approval' },
-    { id: 'sp-a4', timestamp: 'Apr 15, 2026 — 9:00 AM', actor: 'Legal Team', actorInitials: 'LT', action: 'Requirement approved', detail: 'Legal memo approved — Smart Profiles data usage scope.', type: 'approval' },
+    { id: 'sp-a4', timestamp: 'Apr 15, 2026 — 9:00 AM', actor: 'Legal Team', actorInitials: 'LT', action: 'Requirement approved', detail: 'Legal memo approved — Automated Decision Making V1 data usage scope.', type: 'approval' },
     { id: 'sp-a5', timestamp: 'Apr 10, 2026 — 3:22 PM', actor: 'Data Governance', actorInitials: 'DG', action: 'Requirement approved', detail: 'Retention policy set to 90 days approved in Data Governance Policy v4.', type: 'approval' },
   ],
 };
@@ -237,7 +237,7 @@ const nearbyRankingFeature: DemoFeature = {
   owner: 'James Park',
   ownerInitials: 'JP',
   status: 'Review Required',
-  risk: 'High',
+  risk: 'Medium',
   summary: 'New model features, stale model card, and disabled explainability logging diverge from ML governance approval.',
   driftSummary: '5 ML governance violations — unapproved features, stale documentation, and missing fairness report.',
   platform: 'iOS + Android',
@@ -665,7 +665,7 @@ export const connectedSources: ConnectedSource[] = [
     coverage: 91,
     linkedRequirements: 42,
     artifacts: [
-      { id: 'a9', name: 'PRD v3.2 — Smart Profiles', type: 'PRD', path: 'docs/product/smart_profiles_prd_v3.2.md' },
+      { id: 'a9', name: 'PRD v3.2 — Automated Decision Making V1', type: 'PRD', path: 'docs/product/smart_profiles_prd_v3.2.md' },
       { id: 'a10', name: 'PRD v4.1 — Home Feed Redesign', type: 'PRD', path: 'docs/product/home_feed_redesign_prd_v4.1.md' },
       { id: 'a11', name: 'BRD — Nearby Ranking Model', type: 'BRD', path: 'docs/product/nearby_ranking_brd.md' },
     ],
@@ -695,7 +695,7 @@ export const connectedSources: ConnectedSource[] = [
     coverage: 85,
     linkedRequirements: 14,
     artifacts: [
-      { id: 'a15', name: 'Legal Approval Memo — Smart Profiles', type: 'Legal Memo', path: 'docs/legal/smart_profiles_memo.md' },
+      { id: 'a15', name: 'Legal Approval Memo — Automated Decision Making V1', type: 'Legal Memo', path: 'docs/legal/smart_profiles_memo.md' },
       { id: 'a16', name: 'Legal Approval — AI Disclosure', type: 'Legal Memo', path: 'docs/legal/ai_disclosure_approval.md' },
       { id: 'a17', name: 'Ads/Legal Memo — Feed Redesign', type: 'Legal Memo', path: 'docs/legal/feed_redesign_ads_memo.md' },
     ],
@@ -742,7 +742,7 @@ export const connectedSources: ConnectedSource[] = [
     artifacts: [
       { id: 'a24', name: 'Home Feed v3 (approved)', type: 'Figma Frame', path: 'figma://HomeFeed/Approved_v3' },
       { id: 'a25', name: 'Experiment_Variant_B (live)', type: 'Figma Frame', path: 'figma://HomeFeed/Experiment_Variant_B' },
-      { id: 'a26', name: 'Smart Profiles — Profile Edit', type: 'Figma Frame', path: 'figma://SmartProfiles/ProfileEdit_v2' },
+      { id: 'a26', name: 'Automated Decision Making V1 — Profile Edit', type: 'Figma Frame', path: 'figma://SmartProfiles/ProfileEdit_v2' },
     ],
   },
   {
@@ -765,8 +765,8 @@ export const connectedSources: ConnectedSource[] = [
 // ─── System Contracts ─────────────────────────────────────────────────────────
 
 export const systemContracts: SystemContract[] = [
-  { id: 'sc-1', name: 'Smart Profiles', productArea: 'User Identity & Privacy', sourceDocs: ['PRD v3.2', 'PIA v2.1'], implementationSource: 'friendli-mobile + friendli-api', lastScan: '12 min ago', driftStatus: 'Review Required', owner: 'Maya Chen', risk: 'Critical' },
-  { id: 'sc-2', name: 'Nearby Ranking Model', productArea: 'Personalization & ML', sourceDocs: ['ML Model Card v2.1', 'ML Governance Review'], implementationSource: 'friendli-api + friendli-ml', lastScan: '12 min ago', driftStatus: 'Review Required', owner: 'James Park', risk: 'High' },
+  { id: 'sc-1', name: 'Automated Decision Making V1', productArea: 'User Identity & Privacy', sourceDocs: ['PRD v3.2', 'PIA v2.1'], implementationSource: 'friendli-mobile + friendli-api', lastScan: '12 min ago', driftStatus: 'Review Required', owner: 'Maya Chen', risk: 'Critical' },
+  { id: 'sc-2', name: 'Nearby Ranking Model', productArea: 'Personalization & ML', sourceDocs: ['ML Model Card v2.1', 'ML Governance Review'], implementationSource: 'friendli-api + friendli-ml', lastScan: '12 min ago', driftStatus: 'Review Required', owner: 'James Park', risk: 'Medium' },
   { id: 'sc-3', name: 'Plan Assistant', productArea: 'AI Features', sourceDocs: ['AI Governance Review v1', 'Prompt Review v5'], implementationSource: 'friendli-api + Prompt Registry', lastScan: '12 min ago', driftStatus: 'Review Required', owner: 'Priya Sharma', risk: 'Critical' },
   { id: 'sc-4', name: 'Home Feed Redesign', productArea: 'Core Product', sourceDocs: ['PRD v4.1', 'Figma Home Feed v3'], implementationSource: 'friendli-mobile + Experiments', lastScan: '12 min ago', driftStatus: 'Drift Detected', owner: 'Alex Torres', risk: 'Low' },
   { id: 'sc-5', name: 'Location Permissions', productArea: 'Privacy', sourceDocs: ['Privacy Policy v6', 'PIA — Location'], implementationSource: 'friendli-mobile', lastScan: '12 min ago', driftStatus: 'Aligned', owner: 'Maya Chen', risk: 'Low' },
@@ -783,15 +783,147 @@ export const systemContracts: SystemContract[] = [
 
 export const globalAuditEvents: AuditEvent[] = [
   { id: 'g1', timestamp: 'May 30, 2026 — 9:41 AM', actor: 'CodeCounsel Scanner', actorInitials: 'CC', action: 'Scheduled scan completed', detail: 'Full workspace scan completed. 7 material changes detected across 4 features.', type: 'scan' },
-  { id: 'g2', timestamp: 'May 30, 2026 — 9:41 AM', actor: 'CodeCounsel Scanner', actorInitials: 'CC', action: 'Material change detected — Smart Profiles', detail: '5 drifts detected against approved Privacy Impact Assessment v2.1.', type: 'scan' },
+  { id: 'g2', timestamp: 'May 30, 2026 — 9:41 AM', actor: 'CodeCounsel Scanner', actorInitials: 'CC', action: 'Material change detected — Automated Decision Making V1', detail: '5 drifts detected against approved Privacy Impact Assessment v2.1.', type: 'scan' },
   { id: 'g3', timestamp: 'May 30, 2026 — 9:41 AM', actor: 'CodeCounsel Scanner', actorInitials: 'CC', action: 'Material change detected — Plan Assistant', detail: 'Prompt v7 diverges from approved v5 — sensitive guardrail removed.', type: 'scan' },
   { id: 'g4', timestamp: 'May 29, 2026 — 3:45 PM', actor: 'CodeCounsel Scanner', actorInitials: 'CC', action: 'Experiment scope violation detected', detail: 'Home Feed experiment expanded 10%→35% without approved experiment brief.', type: 'scan' },
   { id: 'g5', timestamp: 'May 27, 2026 — 4:10 PM', actor: 'CodeCounsel Scanner', actorInitials: 'CC', action: 'ML governance drift detected', detail: 'Nearby Ranking Model v2.4 includes unapproved features vs Model Card v2.1.', type: 'scan' },
   { id: 'g6', timestamp: 'May 20, 2026 — 2:00 PM', actor: 'Product Manager', actorInitials: 'PM', action: 'Review completed — Push Notifications', detail: 'Push Notification Preferences review completed. Minor changes accepted.', type: 'review' },
   { id: 'g7', timestamp: 'May 10, 2026 — 10:00 AM', actor: 'ML Governance Committee', actorInitials: 'MG', action: 'Requirement approved — Nearby Ranking Model', detail: 'ML Governance Review for Nearby Ranking Model v2.1 approved.', type: 'approval' },
-  { id: 'g8', timestamp: 'Apr 18, 2026 — 11:30 AM', actor: 'Rachel Kim', actorInitials: 'RK', action: 'Privacy review approved — Smart Profiles', detail: 'Privacy Impact Assessment v2.1 approved for Smart Profiles launch.', type: 'approval' },
+  { id: 'g8', timestamp: 'Apr 18, 2026 — 11:30 AM', actor: 'Rachel Kim', actorInitials: 'RK', action: 'Privacy review approved — Automated Decision Making V1', detail: 'Privacy Impact Assessment v2.1 approved for Automated Decision Making V1 launch.', type: 'approval' },
   { id: 'g9', timestamp: 'Apr 5, 2026 — 10:00 AM', actor: 'Priya Sharma', actorInitials: 'PS', action: 'T&S assessment approved — Plan Assistant', detail: 'Trust & Safety Assessment approved for Plan Assistant launch.', type: 'approval' },
   { id: 'g10', timestamp: 'Apr 2, 2026 — 9:00 AM', actor: 'AI Governance Board', actorInitials: 'AG', action: 'AI governance approved — Plan Assistant', detail: 'AI Governance Review v1 approved. Prompt v5 signed off.', type: 'approval' },
+];
+
+// ─── AI / ML Model Inventory ──────────────────────────────────────────────────
+
+export type ModelKind = 'Traditional ML' | 'GenAI';
+export type ModelDocStatus = 'Current' | 'Stale' | 'Missing';
+
+export interface ModelCodeLocation {
+  path: string;
+  description: string;
+}
+
+export interface DemoModel {
+  id: string;
+  name: string;
+  kind: ModelKind;
+  version: string;
+  owner: string;
+  status: 'Aligned' | 'Drift Detected' | 'Review Required';
+  risk: RiskLevel;
+  purpose: string;
+  decisionImpact: string;
+  impactTags: string[];
+  codeLocations: ModelCodeLocation[];
+  governanceDoc: string;
+  governanceDocStatus: ModelDocStatus;
+  lastGovernanceReview: string;
+}
+
+export const demoModels: DemoModel[] = [
+  {
+    id: 'profile-matching',
+    name: 'Profile Matching Model',
+    kind: 'Traditional ML',
+    version: 'v1.2',
+    owner: 'Maya Chen',
+    status: 'Review Required',
+    risk: 'Critical',
+    purpose: 'The model behind Automated Decision Making V1 — matches users to potential friends based on profile similarity.',
+    decisionImpact:
+      'Determines who users are matched with. Device ID and new personal data fields were added to the feature pipeline without privacy review, linking automated matching decisions to a persistent device identifier.',
+    impactTags: ['Automated matching', 'Personal data', 'Device ID'],
+    codeLocations: [
+      { path: 'friendli-api/services/recommendations/feature_pipeline.py', description: 'Feature pipeline — now includes device ID' },
+      { path: 'friendli-api/services/profile/usage_policy.ts', description: 'Profile data usage policy consumed by the model' },
+    ],
+    governanceDoc: 'Privacy Impact Assessment v2.1',
+    governanceDocStatus: 'Stale',
+    lastGovernanceReview: 'Apr 15, 2026',
+  },
+  {
+    id: 'nearby-ranker',
+    name: 'Nearby Ranking Model',
+    kind: 'Traditional ML',
+    version: 'v2.4',
+    owner: 'James Park',
+    status: 'Drift Detected',
+    risk: 'Medium',
+    purpose: 'Ranks events, places, and people in the Nearby feed for every user session.',
+    decisionImpact:
+      'Automated decision-making over what every user sees first. The model card is one version behind production (v2.1 vs v2.4) and the refresh cadence changed from weekly to daily without re-review.',
+    impactTags: ['Automated ranking', 'Personalization', 'Stale documentation'],
+    codeLocations: [
+      { path: 'friendli-api/services/recommendations/ranker_v2_4.py', description: 'Inference service — scores every feed candidate' },
+      { path: 'friendli-ml/feature_store/schemas/ranker_features_v2_4.yaml', description: 'Active feature schema for model v2.4' },
+      { path: 'friendli-ml/pipelines/ranker_training_schedule.yaml', description: 'Training schedule — cadence changed weekly to daily' },
+    ],
+    governanceDoc: 'ML Model Card v2.1',
+    governanceDocStatus: 'Stale',
+    lastGovernanceReview: 'Mar 25, 2026',
+  },
+  {
+    id: 'plan-assistant-llm',
+    name: 'Plan Assistant (LLM)',
+    kind: 'GenAI',
+    version: 'Prompt v5',
+    owner: 'Priya Sharma',
+    status: 'Aligned',
+    risk: 'Low',
+    purpose: 'Conversational assistant that generates plan, restaurant, and event suggestions in chat.',
+    decisionImpact:
+      'Generates user-facing suggestions. Approved guardrails are in place: sensitive-trait inference is blocked, the AI disclosure appears on every suggestion, and bookings are never confirmed without checkout.',
+    impactTags: ['Generative output', 'User-facing suggestions'],
+    codeLocations: [
+      { path: 'prompts/plan-assistant/system_prompt_v5.md', description: 'Production system prompt (approved)' },
+      { path: 'friendli-mobile/src/ai/PlanAssistant.tsx', description: 'Chat surface — AI disclosure on every suggestion' },
+      { path: 'friendli-api/services/ai/conversation_retention.yaml', description: 'Conversation retention — 30 days per approved PIA' },
+    ],
+    governanceDoc: 'AI Governance Review v1 (Prompt v5)',
+    governanceDocStatus: 'Current',
+    lastGovernanceReview: 'Apr 2, 2026',
+  },
+  {
+    id: 'sponsored-auction',
+    name: 'Sponsored Placement Auction',
+    kind: 'Traditional ML',
+    version: 'v3.0',
+    owner: 'Alex Torres',
+    status: 'Aligned',
+    risk: 'Low',
+    purpose: 'Prices and places sponsored events in the home feed via a real-time auction.',
+    decisionImpact:
+      'Direct influence on pricing — sets sponsored placement floor prices and decides how much paid content each user sees. Operating within the approved ads policy.',
+    impactTags: ['Pricing influence', 'Ad placement'],
+    codeLocations: [
+      { path: 'friendli-api/services/ads/auction_model_v3.py', description: 'Auction scoring and floor price model' },
+      { path: 'friendli-api/services/ads/placement_config.yaml', description: 'Per-surface ad load limits' },
+    ],
+    governanceDoc: 'Ads Model Review v3.0',
+    governanceDocStatus: 'Current',
+    lastGovernanceReview: 'May 12, 2026',
+  },
+  {
+    id: 'ts-content-filter',
+    name: 'Trust & Safety Content Filter',
+    kind: 'Traditional ML',
+    version: 'v2.0',
+    owner: 'Priya Sharma',
+    status: 'Aligned',
+    risk: 'Low',
+    purpose: 'Classifier that screens messages and images for policy violations before delivery.',
+    decisionImpact:
+      'Automated enforcement — can block or flag user content without human review. Appeals route to the Trust & Safety queue.',
+    impactTags: ['Automated enforcement', 'Content moderation'],
+    codeLocations: [
+      { path: 'friendli-api/services/safety/content_filter_v2.py', description: 'Message and image classification service' },
+      { path: 'friendli-api/services/safety/enforcement_rules.yaml', description: 'Thresholds for block vs flag decisions' },
+    ],
+    governanceDoc: 'T&S Model Review v2.0',
+    governanceDocStatus: 'Current',
+    lastGovernanceReview: 'May 2, 2026',
+  },
 ];
 
 export const overviewMetrics = {

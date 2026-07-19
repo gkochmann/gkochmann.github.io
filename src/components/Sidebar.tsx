@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard, GitCompare, FileText, Database,
-  Clock, Settings, ChevronRight
+  Clock, Settings, ChevronRight, BrainCircuit
 } from 'lucide-react';
 import { LogoMark } from './LogoMark';
+import { useCompany } from './CompanyContext';
 
-type NavSection = 'overview' | 'live-reviews' | 'contracts' | 'sources' | 'audit' | 'settings';
+type NavSection = 'overview' | 'live-reviews' | 'contracts' | 'sources' | 'models' | 'audit' | 'settings';
 
 interface SidebarProps {
   activeSection: NavSection;
@@ -17,11 +18,14 @@ const navItems = [
   { id: 'live-reviews' as NavSection, label: 'Reviews', icon: GitCompare, badge: '3' },
   { id: 'contracts' as NavSection, label: 'Contracts', icon: FileText },
   { id: 'sources' as NavSection, label: 'Sources', icon: Database },
+  { id: 'models' as NavSection, label: 'Models', icon: BrainCircuit },
   { id: 'audit' as NavSection, label: 'History', icon: Clock },
   { id: 'settings' as NavSection, label: 'Settings', icon: Settings },
 ];
 
 export function Sidebar({ activeSection, onNavigate }: SidebarProps) {
+  const { name: companyName } = useCompany();
+
   return (
     <div className="w-56 flex-shrink-0 bg-white border-r border-gray-100 flex flex-col h-full">
       {/* Logo */}
@@ -40,10 +44,10 @@ export function Sidebar({ activeSection, onNavigate }: SidebarProps) {
         <button className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group">
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 rounded-md bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
-              <span className="text-white font-bold text-[9px]">F</span>
+              <span className="text-white font-bold text-[9px]">{companyName.charAt(0).toUpperCase()}</span>
             </div>
             <div className="text-left">
-              <div className="text-xs font-semibold text-gray-800 leading-none">Friendli</div>
+              <div className="text-xs font-semibold text-gray-800 leading-none truncate max-w-[110px]">{companyName}</div>
               <div className="text-[10px] text-gray-400 mt-0.5">Production</div>
             </div>
           </div>
@@ -52,7 +56,7 @@ export function Sidebar({ activeSection, onNavigate }: SidebarProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 py-4 overflow-y-auto">
+      <nav className="flex-1 px-3 py-4 overflow-y-auto" data-tour="sidebar-nav">
         <div className="space-y-0.5">
           {navItems.map(item => {
             const Icon = item.icon;

@@ -3,14 +3,17 @@ import { motion } from 'framer-motion';
 import { Search, Filter } from 'lucide-react';
 import { systemContracts } from '../data/demoData';
 import { StatusBadge } from './StatusBadge';
+import { useCompany, useDeepBrand } from './CompanyContext';
 
 export function SystemContractsTable() {
+  const { name: companyName } = useCompany();
+  const brandedContracts = useDeepBrand(systemContracts);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<string>('All');
 
   const filters = ['All', 'Drift Detected', 'Review Required', 'Aligned'];
   const visibleContractIds = ['sc-1', 'sc-2', 'sc-4', 'sc-5', 'sc-6', 'sc-7', 'sc-8', 'sc-9', 'sc-10', 'sc-12'];
-  const visibleContracts = systemContracts.filter(contract => visibleContractIds.includes(contract.id));
+  const visibleContracts = brandedContracts.filter(contract => visibleContractIds.includes(contract.id));
 
   const filtered = visibleContracts.filter(c => {
     const matchSearch = c.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -25,7 +28,7 @@ export function SystemContractsTable() {
       <div className="mb-5">
         <h1 className="text-xl font-bold text-gray-900">Contracts</h1>
         <p className="text-sm text-gray-500 mt-0.5">
-          Contracts define what should stay true as Friendli changes.
+          Contracts define what should stay true as {companyName} changes.
         </p>
       </div>
 

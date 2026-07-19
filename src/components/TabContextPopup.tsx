@@ -1,7 +1,8 @@
-import { ArrowRight, Database, FileText, GitCompare, LayoutDashboard, Settings, Clock } from 'lucide-react';
+import { ArrowRight, BrainCircuit, Database, FileText, GitCompare, LayoutDashboard, Settings, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useBrand } from './CompanyContext';
 
-type NavSection = 'overview' | 'live-reviews' | 'contracts' | 'sources' | 'audit' | 'settings';
+type NavSection = 'overview' | 'live-reviews' | 'contracts' | 'sources' | 'models' | 'audit' | 'settings';
 
 interface TabContextPopupProps {
   section: NavSection;
@@ -15,27 +16,32 @@ const tabContext: Record<NavSection, {
 }> = {
   overview: {
     title: 'Product Overview',
-    body: 'Friendli is running Smart Profiles, a matching feature that uses profile details, location signals, and routine data. Start here to see what CodeCounsel found in the live product.',
+    body: 'Friendli is running Automated Decision Making V1, a new feature that automates matching decisions using profile details, location signals, and routine data. Start here to see what CodeCounsel found in the live product.',
     icon: LayoutDashboard,
   },
   sources: {
     title: 'Sources',
-    body: 'These are the documents and systems CodeCounsel checked for Smart Profiles, including the product plan, privacy review, code, analytics plan, and disclosures.',
+    body: 'These are the documents and systems CodeCounsel checked for Automated Decision Making V1, including the product plan, privacy review, code, analytics plan, and disclosures.',
     icon: Database,
   },
   contracts: {
     title: 'Contracts',
-    body: 'Contracts turn Friendli approvals into rules CodeCounsel can monitor, such as which data Smart Profiles may collect, how it may be used, and how long it may be retained.',
+    body: 'Contracts turn Friendli approvals into rules CodeCounsel can monitor, such as which data Automated Decision Making V1 may collect, how it may be used, and how long it may be retained.',
     icon: FileText,
   },
   'live-reviews': {
     title: 'Reviews',
-    body: 'Friendli\'s new Smart Profiles feature is collecting new data compared with what was originally approved. This view shows what was approved, what is being deployed now, and what needs review.',
+    body: 'Friendli\'s new Automated Decision Making V1 feature is collecting new data compared with what was originally approved. This view shows what was approved, what is being deployed now, and what needs review.',
     icon: GitCompare,
+  },
+  models: {
+    title: 'Models',
+    body: 'Models shows every ML and AI model Friendli runs in production, where each one appears in the code, and what it influences — automated ranking, matching, pricing, and content enforcement.',
+    icon: BrainCircuit,
   },
   audit: {
     title: 'History',
-    body: 'History records the Smart Profiles approval, the changes CodeCounsel detected, and any review decisions so Friendli can explain what happened later.',
+    body: 'History records the Automated Decision Making V1 approval, the changes CodeCounsel detected, and any review decisions so Friendli can explain what happened later.',
     icon: Clock,
   },
   settings: {
@@ -46,6 +52,7 @@ const tabContext: Record<NavSection, {
 };
 
 export function TabContextPopup({ section, onClose }: TabContextPopupProps) {
+  const brand = useBrand();
   const context = tabContext[section];
   const Icon = context.icon;
 
@@ -64,7 +71,7 @@ export function TabContextPopup({ section, onClose }: TabContextPopupProps) {
           </div>
           <div>
             <h2 className="text-base font-bold text-gray-950">{context.title}</h2>
-            <p className="mt-1.5 text-sm leading-6 text-gray-600">{context.body}</p>
+            <p className="mt-1.5 text-sm leading-6 text-gray-600">{brand(context.body)}</p>
           </div>
         </div>
 

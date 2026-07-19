@@ -14,6 +14,7 @@ import { PhonePreview } from './PhonePreview';
 import { ReviewTaskModal } from './ReviewTaskModal';
 import { DisclosureDraftPanel } from './DisclosureDraftPanel';
 import { MarkLowRiskModal } from './MarkLowRiskModal';
+import { deepBrand, useCompany } from './CompanyContext';
 
 const categoryIcon: Record<string, React.ElementType> = {
   Privacy: Shield,
@@ -48,9 +49,10 @@ function now() {
 }
 
 export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
+  const { name: companyName, slug: companySlug } = useCompany();
   const visibleReviewIds = ['smart-profiles', 'nearby-ranking', 'home-feed'];
-  const [features, setFeatures] = useState<DemoFeature[]>(
-    demoFeatures.filter(feature => visibleReviewIds.includes(feature.id)),
+  const [features, setFeatures] = useState<DemoFeature[]>(() =>
+    deepBrand(demoFeatures.filter(feature => visibleReviewIds.includes(feature.id)), companyName, companySlug),
   );
   const [activeId, setActiveId] = useState(initialFeatureId ?? demoFeatures[0].id);
   const [showReviewModal, setShowReviewModal] = useState(false);
@@ -196,7 +198,7 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
                     <StatusBadge status={feature.status} />
                   </div>
                   <div className="text-xs text-gray-400 mt-0.5 flex items-center gap-3 flex-wrap">
-                    <span>Friendli Workspace</span>
+                    <span>{companyName} Workspace</span>
                     <span>Owner: {feature.owner}</span>
                     <span>Scan: {feature.latestScan}</span>
                   </div>
@@ -233,7 +235,7 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
               className="flex-1 flex min-w-0 overflow-hidden"
             >
               {/* Column 1: What Was Approved */}
-              <div className="w-[30%] min-w-0 flex flex-col border-r border-gray-100 overflow-hidden">
+              <div className="w-[30%] min-w-0 flex flex-col border-r border-gray-100 overflow-hidden" data-tour="approved-column">
                 <div className="px-4 py-2.5 border-b border-gray-100 bg-green-50/50">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-3.5 w-3.5 text-green-600" />
@@ -266,7 +268,7 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
               </div>
 
               {/* Column 2: What Is Live */}
-              <div className="w-[30%] min-w-0 flex flex-col border-r border-gray-100 overflow-hidden">
+              <div className="w-[30%] min-w-0 flex flex-col border-r border-gray-100 overflow-hidden" data-tour="live-column">
                 <div className="px-4 py-2.5 border-b border-gray-100 bg-red-50/40">
                   <div className="flex items-center gap-2">
                     <AlertTriangle className="h-3.5 w-3.5 text-red-600" />
@@ -309,7 +311,7 @@ export function ReviewDashboard({ initialFeatureId }: ReviewDashboardProps) {
               </div>
 
               {/* Column 3: Needs Review */}
-              <div className="flex-1 min-w-0 flex flex-col overflow-hidden">
+              <div className="flex-1 min-w-0 flex flex-col overflow-hidden" data-tour="review-column">
                 <div className="px-4 py-2.5 border-b border-gray-100 bg-orange-50/30">
                   <div className="flex items-center gap-2">
                     <AlertCircle className="h-3.5 w-3.5 text-orange-600" />

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { X, FileText, Sparkles } from 'lucide-react';
 import { useToast } from './ToastProvider';
 import type { DemoFeature } from '../data/demoData';
+import { useBrand } from './CompanyContext';
 
 interface DisclosureDraftPanelProps {
   feature: DemoFeature;
@@ -12,9 +13,9 @@ interface DisclosureDraftPanelProps {
 
 function generateDraft(feature: DemoFeature): string {
   if (feature.id === 'smart-profiles') {
-    return `Privacy Disclosure Update — Smart Profiles
+    return `Privacy Disclosure Update — Automated Decision Making V1
 
-Friendli collects and uses the following information when you use Smart Profiles:
+Friendli collects and uses the following information when you use Automated Decision Making V1:
 
 Data We Collect:
 • Name, profile photo, city
@@ -64,7 +65,8 @@ ${feature.diffs.map(d => `• ${d.requirement}: ${d.changeType}`).join('\n')}`;
 }
 
 export function DisclosureDraftPanel({ feature, onClose, onSaved }: DisclosureDraftPanelProps) {
-  const [draft, setDraft] = useState(() => generateDraft(feature));
+  const brand = useBrand();
+  const [draft, setDraft] = useState(() => brand(generateDraft(feature)));
   const [saved, setSaved] = useState(false);
   const { showToast } = useToast();
 

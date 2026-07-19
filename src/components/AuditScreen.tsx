@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import { globalAuditEvents, demoFeatures } from '../data/demoData';
 import { AuditTimeline } from './AuditTimeline';
 import { Filter } from 'lucide-react';
+import { useCompany } from './CompanyContext';
 
 export function AuditScreen() {
+  const { name: companyName } = useCompany();
   const [typeFilter, setTypeFilter] = useState('All');
 
   const allEvents = [
@@ -20,7 +22,7 @@ export function AuditScreen() {
       <div className="mb-5">
         <h1 className="text-xl font-bold text-gray-900">History</h1>
         <p className="text-sm text-gray-500 mt-0.5">
-          Every approval, detected change, review, and decision across the Friendli workspace.
+          Every approval, detected change, review, and decision across the {companyName} workspace.
         </p>
       </div>
 
