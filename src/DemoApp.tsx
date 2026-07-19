@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ToastProvider } from './components/ToastProvider';
 import { LoadingScreen } from './components/LoadingScreen';
@@ -12,10 +12,18 @@ import { AuditScreen } from './components/AuditScreen';
 import { SettingsScreen } from './components/SettingsScreen';
 import { DemoIntroModal } from './components/DemoIntroModal';
 import { TabContextPopup } from './components/TabContextPopup';
+import { DemoMobileNotice } from './components/DemoMobileNotice';
 
 type NavSection = 'overview' | 'live-reviews' | 'contracts' | 'sources' | 'audit' | 'settings';
 
-export function DemoApp() {
+const MOBILE_QUERY = '(max-width: 767px)';
+
+interface DemoAppProps {
+  onNavigateHome: () => void;
+}
+
+export function DemoApp({ onNavigateHome }: DemoAppProps) {
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches);
   const [loading, setLoading] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
   const [tabContextSection, setTabContextSection] = useState<NavSection | null>(null);
@@ -24,6 +32,13 @@ export function DemoApp() {
   const [reviewFeatureId, setReviewFeatureId] = useState<string | undefined>(undefined);
 
   const handleDoneLoading = useCallback(() => setLoading(false), []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(MOBILE_QUERY);
+    const handleChange = (event: MediaQueryListEvent) => setIsMobile(event.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   function openReview(featureId: string) {
     setReviewFeatureId(featureId);
@@ -37,6 +52,10 @@ export function DemoApp() {
       setTabContextSection(section);
       setSeenTabContexts(prev => [...prev, section]);
     }
+  }
+
+  if (isMobile) {
+    return <DemoMobileNotice onBackHome={onNavigateHome} />;
   }
 
   return (

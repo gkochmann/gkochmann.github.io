@@ -35,7 +35,7 @@ function App() {
   if (path === '/partnerships') {
     page = <PartnershipsPage />;
   } else if (path === '/demo') {
-    page = <DemoApp />;
+    page = <DemoApp onNavigateHome={() => navigateTo('/')} />;
   } else {
     page = <HomePage />;
   }
