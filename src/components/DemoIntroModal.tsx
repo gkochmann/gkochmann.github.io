@@ -15,7 +15,7 @@ export function DemoIntroModal({ onStart }: DemoIntroModalProps) {
   const displayName = companyName.trim() || 'Friendli';
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-gray-950/35 px-4 backdrop-blur-md">
+    <div className="fixed inset-x-0 top-[57px] bottom-0 z-[80] flex items-center justify-center bg-gray-950/35 px-4 backdrop-blur-md">
       <motion.div
         initial={{ opacity: 0, y: 18, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
